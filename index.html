@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Career Advisor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      background: #f9fafb;
+      color: #333;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      margin-bottom: 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+      border-color: #2980b9;
+      outline: none;
+      box-shadow: 0 0 8px rgba(41, 128, 185, 0.3);
+    }
+
+    button {
+      background: #2980b9;
+      color: white;
+      font-weight: 700;
+      padding: 12px 0;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: #1f6391;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #ecf0f1;
+      border-radius: 12px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .result h3 {
+      color: #34495e;
+      margin-bottom: 10px;
+    }
+
+    .result p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .result strong {
+      color: #2c3e50;
+    }
+
+    .result ul {
+      list-style: disc inside;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .result ul li {
+      margin-bottom: 8px;
+    }
+
+    .result a {
+      color: #2980b9;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .result a:hover {
+      text-decoration: underline;
+      color: #1f6391;
+    }
+  </style>
+</head>
+<body>
+  <h1>Smart Career Advisor Bot</h1>
+  <form id="careerForm">
+    <label>1. What interests you most?</label><br />
+    <select id="interest">
+      <option value="design">Design & Creativity</option>
+      <option value="data">Data & Numbers</option>
+      <option value="logic">Problem Solving</option>
+      <option value="people">Working with People</option>
+      <option value="tech">Technology & Innovation</option>
+      <option value="management">Management & Leadership</option>
+    </select><br /><br />
+
+    <label>2. Do you enjoy working with computers or people?</label><br />
+    <select id="style">
+      <option value="computers">Computers</option>
+      <option value="people">People</option>
+    </select><br /><br />
+
+    <label>3. What's your goal?</label><br />
+    <select id="goal">
+      <option value="remote">Get a remote job</option>
+      <option value="freelance">Freelance or side hustle</option>
+      <option value="startup">Build a tech product</option>
+      <option value="growth">Career growth in a company</option>
+      <option value="education">Further education / Research</option>
+    </select><br /><br />
+
+    <button type="submit">Get Career Advice</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    document.getElementById("careerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const interest = document.getElementById("interest").value;
+      const style = document.getElementById("style").value;
+      const goal = document.getElementById("goal").value;
+
+      let resultText = "";
+
+      // Design & Creativity
+      if (interest === "design") {
+        if (style === "computers") {
+          resultText = `
+            <h3>🎨 Recommended: UI/UX Design</h3>
+            <p>You enjoy creativity and working with computers. UI/UX Design could be a great path.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.youtube.com/@KevinPowell" target="_blank">Kevin Powell (CSS/UI)</a></li>
+              <li><a href="https://www.figma.com" target="_blank">Learn Figma</a></li>
+            </ul>
+          `;
+        } else {
+          resultText = `
+            <h3>🎭 Recommended: Graphic Design / Creative Arts</h3>
+            <p>You love creativity and people. Consider careers in graphic design, branding, or creative arts.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.coursera.org/specializations/graphic-design" target="_blank">Graphic Design Specialization</a></li>
+              <li><a href="https://www.adobe.com/creativecloud.html" target="_blank">Adobe Creative Cloud Tools</a></li>
+            </ul>
+          `;
+        }
+      }
+      // Data & Numbers
+      else if (interest === "data") {
+        if (goal === "education") {
+          resultText = `
+            <h3>🎓 Recommended: Data Science Researcher</h3>
+            <p>You enjoy data and want to dive deep into research and education.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.coursera.org/specializations/jhu-data-science" target="_blank">Johns Hopkins Data Science</a></li>
+              <li><a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn</a></li>
+            </ul>
+          `;
+        } else {
+          resultText = `
+            <h3>📊 Recommended: Data Analyst / Data Engineer</h3>
+            <p>You’re into numbers and analysis. Data roles suit you well.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn</a></li>
+              <li><a href="https://www.youtube.com/c/AlexTheAnalyst" target="_blank">Alex the Analyst (YouTube)</a></li>
+            </ul>
+          `;
+        }
+      }
+      // Problem Solving
+      else if (interest === "logic") {
+        if (goal === "freelance") {
+          resultText = `
+            <h3>💻 Recommended: Freelance Backend Developer</h3>
+            <p>You love solving problems and want flexibility. Freelance backend development fits you.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.freecodecamp.org" target="_blank">FreeCodeCamp (Node.js, Python)</a></li>
+              <li><a href="https://roadmap.sh/backend" target="_blank">Backend Developer Roadmap</a></li>
+            </ul>
+          `;
+        } else {
+          resultText = `
+            <h3>💻 Recommended: Backend Developer / Software Engineer</h3>
+            <p>You love solving problems. Backend or software development is a solid path.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.freecodecamp.org" target="_blank">FreeCodeCamp (Node.js, Python)</a></li>
+              <li><a href="https://roadmap.sh/backend" target="_blank">Backend Developer Roadmap</a></li>
+            </ul>
+          `;
+        }
+      }
+      // Working with People
+      else if (interest === "people") {
+        if (style === "people") {
+          resultText = `
+            <h3>🗣️ Recommended: Tech Support / Community Manager</h3>
+            <p>You enjoy helping people. You’d shine in tech support, teaching, or community roles.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.coursera.org/learn/technical-support-fundamentals" target="_blank">Google IT Support Course</a></li>
+              <li><a href="https://www.linkedin.com/learning" target="_blank">LinkedIn Learning</a></li>
+            </ul>
+          `;
+        } else {
+          resultText = `
+            <h3>🤝 Recommended: HR / People Management</h3>
+            <p>You like people but prefer some computer work. Consider HR or people management roles.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.coursera.org/specializations/human-resource-management" target="_blank">HR Management Specialization</a></li>
+              <li><a href="https://www.linkedin.com/learning" target="_blank">LinkedIn Learning</a></li>
+            </ul>
+          `;
+        }
+      }
+      // Technology & Innovation
+      else if (interest === "tech") {
+        if (goal === "startup") {
+          resultText = `
+            <h3>🚀 Recommended: Tech Entrepreneur / Product Manager</h3>
+            <p>You’re passionate about tech innovation and want to build products/startups.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.coursera.org/specializations/wharton-entrepreneurship" target="_blank">Entrepreneurship Specialization</a></li>
+              <li><a href="https://www.productschool.com" target="_blank">Product School</a></li>
+            </ul>
+          `;
+        } else {
+          resultText = `
+            <h3>💡 Recommended: Software Developer / Innovation Specialist</h3>
+            <p>Tech and innovation excite you. Consider software development or R&D roles.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.freecodecamp.org" target="_blank">FreeCodeCamp</a></li>
+              <li><a href="https://roadmap.sh" target="_blank">Developer Roadmaps</a></li>
+            </ul>
+          `;
+        }
+      }
+      // Management & Leadership
+      else if (interest === "management") {
+        if (goal === "growth") {
+          resultText = `
+            <h3>📈 Recommended: Project Manager / Team Lead</h3>
+            <p>You want career growth and enjoy leading teams and managing projects.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank">PMP Certification</a></li>
+              <li><a href="https://www.coursera.org/specializations/leadership-development" target="_blank">Leadership Development</a></li>
+            </ul>
+          `;
+        } else {
+          resultText = `
+            <h3>🧑‍💼 Recommended: Business Analyst / Operations Manager</h3>
+            <p>Leadership and management suit you well. Explore business analysis or operations.</p>
+            <strong>Start learning:</strong>
+            <ul>
+              <li><a href="https://www.coursera.org/specializations/business-analytics" target="_blank">Business Analytics</a></li>
+              <li><a href="https://www.linkedin.com/learning" target="_blank">LinkedIn Learning</a></li>
+            </ul>
+          `;
+        }
+      } else {
+        resultText = "<p>Try different combinations to see more suggestions!</p>";
+      }
+
+      document.getElementById("result").innerHTML = resultText;
+    });
+  </script>
+</body>
+</html>
